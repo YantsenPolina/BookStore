@@ -31,16 +31,16 @@ INSERT INTO book_category(category_name) VALUES ('English');
 INSERT INTO book_category(category_name) VALUES ('Fiction');
 INSERT INTO book (isbn, name, author, publishing, image_url, active, units_in_stock, unit_price, category_id, date_created)
 VALUES ('978-0-00-750767-2', 'A Knight of the Seven Kingdoms', 'George R.R. Martin', 'HarperVoyager',
-        'assets/images/products/placeholder.png', 1, 10, 19.99, 1, NOW());
+        'assets/images/books/placeholder.png', 1, 10, 19.99, 1, NOW());
 INSERT INTO book (isbn, name, author, publishing, image_url, active, units_in_stock, unit_price, category_id, date_created)
 VALUES ('0-19-431456-1', 'How English Works', 'Michael Swan, Catherine Walter', 'Oxford University Press',
-        'assets/images/products/placeholder.png', 1, 5, 9.99, 3, NOW());
+        'assets/images/books/placeholder.png', 1, 5, 9.99, 3, NOW());
 INSERT INTO book (isbn, name, author, publishing, image_url, active, units_in_stock, unit_price, category_id, date_created)
 VALUES ('978-0-00-748729-5', 'The Hobbit or There and Back Again', 'J.R.R. Tolkien', 'HarperCollinsPublishers',
-        'assets/images/products/placeholder.png', 1, 10, 11.99, 1, NOW());
+        'assets/images/books/placeholder.png', 1, 10, 11.99, 1, NOW());
 INSERT INTO book (isbn, name, author, publishing, image_url, active, units_in_stock, unit_price, category_id, date_created)
 VALUES ('978-0-00-744803-6', 'A Game of Thrones', 'George R.R. Martin', 'HarperVoyager',
-        'assets/images/products/placeholder.png',1 , 10, 29.99, 1, NOW());
+        'assets/images/books/placeholder.png',1 , 10, 29.99, 1, NOW());
 INSERT INTO book (isbn, name, author, publishing, image_url, active, units_in_stock, unit_price, category_id, date_created)
-VALUES ('0-7475-6320-9', "Schott\'s Original Miscellany", 'Ben Schott', 'Bloomsbury',' ||
-    ''assets/images/products/placeholder.png', 1, 5, 4.99, 4, NOW());
+VALUES ('0-7475-6320-9', "Schott\'s Original Miscellany", 'Ben Schott', 'Bloomsbury',
+		'assets/images/books/placeholder.png', 1, 5, 4.99, 4, NOW());
