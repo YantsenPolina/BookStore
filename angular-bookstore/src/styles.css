@@ -519,11 +519,11 @@ input.au-input.au-input-xl{
 
 /* 
  * ----------------------------
- * Products List
+ * Books List
  * ----------------------------
  */
 
-.product-box img {
+.book-box img {
     width: 150px;
 }
 
@@ -536,7 +536,7 @@ input.au-input.au-input-xl{
     outline: 0;
     margin-left: 5px;
 }
-.product-box{
+.book-box{
     margin-bottom:60px
 }
 .price{
@@ -544,7 +544,7 @@ input.au-input.au-input-xl{
     font-weight:800;
     color:#0da8e4
 }
-.product-box h1{
+.book-box h1{
     font-size:18px;
     border-bottom:1px solid #ccc;
     padding-bottom:5px;
@@ -552,7 +552,7 @@ input.au-input.au-input-xl{
     padding-top:12px;
     margin-bottom:7px
 }
-.product-box h2{
+.book-box h2{
     font-size:15px;
     padding-bottom:0;
     font-weight:500;
@@ -710,7 +710,7 @@ table.table.table-bordered th{
 
 /* 
  * ----------------------------
- * Product Details
+ * Book Details
  * ----------------------------
  */
 
@@ -721,6 +721,9 @@ table.table.table-bordered th{
 }
 .detail-section{
     margin-top:60px
+}
+.detail-img{
+    width: 30%;
 }
 /**/
 
@@ -973,7 +976,7 @@ footer ul li{
     .footer-pagination{
         text-align:center
     }
-    .product-box{
+    .book-box{
         text-align:centerg
     }
     .page-container{
