@@ -7,24 +7,7 @@
         <img src="assets/images/logo.png" alt="bookstore" class="img-responsive">
       </a>
     </div>
-    <div class="menu-sidebar-content js-scrollbar1">
-      <nav class="navbar-sidebar">
-        <ul class="list-unstyled navbar-list">
-          <li>
-            <a href="#">Fantasy</a>
-          </li>
-          <li>
-            <a href="#">Programming</a>
-          </li>
-          <li>
-            <a href="#">English</a>
-          </li>
-          <li>
-            <a href="#">Fiction</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
+    <app-book-category-menu></app-book-category-menu>
   </aside>
   <!-- END MENU SIDEBAR-->
 
@@ -54,7 +37,7 @@
     <!-- END HEADER DESKTOP-->
 
     <!-- MAIN CONTENT-->
-    <app-book-list></app-book-list>
+    <router-outlet></router-outlet>
 
   </div>
   <!-- END PAGE CONTAINER-->

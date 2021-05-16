@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Book } from 'src/app/common/book';
 import { BookService } from 'src/app/services/book.service';
 
@@ -10,14 +11,30 @@ import { BookService } from 'src/app/services/book.service';
 export class BookListComponent implements OnInit {
 
   books: Book[];
-  constructor(private bookService: BookService) { }
+  categoryId: number;
+  categoryName: string;
+
+  constructor(private bookService: BookService,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.listBooks();
+    this.route.paramMap.subscribe(() => {
+      this.listBooks();
+    });
   }
 
   listBooks() {
-    this.bookService.getBookList().subscribe(
+    const hasCategoryId: boolean = this.route.snapshot.paramMap.has('id');
+
+    if (hasCategoryId) {
+      this.categoryId = +this.route.snapshot.paramMap.get('id');
+      this.categoryName = this.route.snapshot.paramMap.get('name');
+    } else {
+      this.categoryId = 1;
+      this.categoryName = 'Fantasy';
+    }
+
+    this.bookService.getBookList(this.categoryId).subscribe(
       data => {
         this.books = data;
       }
