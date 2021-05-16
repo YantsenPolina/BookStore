@@ -8,8 +8,10 @@ import { BookService } from './services/book.service';
 
 import { Routes, RouterModule } from '@angular/router';
 import { BookCategoryMenuComponent } from './components/book-category-menu/book-category-menu.component';
+import { SearchComponent } from './components/search/search.component';
 
 const routes: Routes = [
+  { path: 'search/:keyword', component: BookListComponent},
   { path: 'category/:id/:name', component: BookListComponent},
   { path: 'category', component: BookListComponent},
   { path: 'books', component: BookListComponent},
@@ -21,7 +23,8 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     BookListComponent,
-    BookCategoryMenuComponent
+    BookCategoryMenuComponent,
+    SearchComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
