@@ -11,6 +11,8 @@ import { BookCategoryMenuComponent } from './components/book-category-menu/book-
 import { SearchComponent } from './components/search/search.component';
 import { BookDetailsComponent } from './components/book-details/book-details.component';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 const routes: Routes = [
   { path: 'books/:id', component: BookDetailsComponent},
   { path: 'search/:keyword', component: BookListComponent},
@@ -32,7 +34,8 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [BookService],
   bootstrap: [AppComponent]

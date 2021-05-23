@@ -10,10 +10,17 @@ import { BookService } from 'src/app/services/book.service';
 })
 export class BookListComponent implements OnInit {
 
-  books: Book[];
-  categoryId: number;
-  categoryName: string;
-  searchMode: boolean;
+  books: Book[] = [];
+  categoryId: number = 1;
+  previousCategoryId: number = 1;
+  categoryName: string = 'Fantasy';
+  searchMode: boolean = false;
+
+  pageNumber: number = 1;
+  pageSize: number = 5;
+  totalElements: number = 0;
+
+  previousKeyword; string = null;
 
   constructor(private bookService: BookService,
               private route: ActivatedRoute) { }
@@ -44,19 +51,45 @@ export class BookListComponent implements OnInit {
       this.categoryName = 'Fantasy';
     }
 
-    this.bookService.getBookList(this.categoryId).subscribe(
-      data => {
-        this.books = data;
-      }
+    if (this.previousCategoryId != this.categoryId) {
+      this.pageNumber = 1;
+    }
+
+    this.previousCategoryId = this.categoryId;
+    console.log(`categoryId=${this.categoryId}, pageNumber=${this.pageNumber}`);
+
+    this.bookService.getBookListPaginate(this.pageNumber - 1, this.pageSize, this.categoryId).subscribe(
+      this.processResult()
     )
   }
 
   handleSearchBooks() {
     const keyword: string = this.route.snapshot.paramMap.get('keyword');
-    this.bookService.searchBooks(keyword).subscribe(
-      data => {
-        this.books = data;
-      }
-    )
+
+    if (this.previousKeyword != keyword) {
+      this.pageNumber = 1;
+    }
+
+    this.previousKeyword = keyword;
+    console.log(`keyword=${keyword}, pageNumber=${this.pageNumber}`);
+
+    this.bookService.searchBooksPaginate(this.pageNumber - 1, this.pageSize, keyword).subscribe(
+      this.processResult()
+    );
+  }
+
+  processResult() {
+    return data => {
+        this.books = data._embedded.books;
+        this.pageNumber = data.page.number + 1;
+        this.pageSize = data.page.size;
+        this.totalElements = data.page.totalElements;
+    };
+  }
+
+  updatePageSize(pageSize: number) {
+    this.pageSize = pageSize;
+    this.pageNumber = 1;
+    this.listBooks();
   }
 }
