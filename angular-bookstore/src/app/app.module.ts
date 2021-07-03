@@ -14,8 +14,11 @@ import { BookDetailsComponent } from './components/book-details/book-details.com
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CartStatusComponent } from './components/cart-status/cart-status.component';
 import { CartDetailsComponent } from './components/cart-details/cart-details.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
+  { path: 'checkout', component: CheckoutComponent},
   { path: 'cart-details', component: CartDetailsComponent},
   { path: 'books/:id', component: BookDetailsComponent},
   { path: 'search/:keyword', component: BookListComponent},
@@ -34,13 +37,15 @@ const routes: Routes = [
     SearchComponent,
     BookDetailsComponent,
     CartStatusComponent,
-    CartDetailsComponent
+    CartDetailsComponent,
+    CheckoutComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule
   ],
   providers: [BookService],
   bootstrap: [AppComponent]
