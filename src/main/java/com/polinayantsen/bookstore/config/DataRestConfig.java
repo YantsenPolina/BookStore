@@ -1,10 +1,8 @@
 package com.polinayantsen.bookstore.config;
 
-import com.polinayantsen.bookstore.entity.Book;
-import com.polinayantsen.bookstore.entity.BookCategory;
-import com.polinayantsen.bookstore.entity.Country;
-import com.polinayantsen.bookstore.entity.State;
+import com.polinayantsen.bookstore.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
@@ -20,17 +18,24 @@ import java.util.Set;
 @Configuration
 public class DataRestConfig implements RepositoryRestConfigurer {
 
+    @Value("${allowed.origins}")
+    private String[] allowedOrigins;
+
     @Autowired
     private EntityManager entityManager;
 
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
-        HttpMethod[] unsupportedActions = {HttpMethod.PUT, HttpMethod.POST, HttpMethod.DELETE};
+        HttpMethod[] unsupportedActions = {HttpMethod.PUT, HttpMethod.POST,
+                                           HttpMethod.PATCH, HttpMethod.DELETE};
         disableHttpMethods(Book.class, config, unsupportedActions);
         disableHttpMethods(BookCategory.class, config, unsupportedActions);
         disableHttpMethods(Country.class, config, unsupportedActions);
         disableHttpMethods(State.class, config, unsupportedActions);
+        disableHttpMethods(Order.class, config, unsupportedActions);
         exposeIds(config);
+
+        cors.addMapping(config.getBasePath() + "/**").allowedOrigins(allowedOrigins);
     }
 
     private void disableHttpMethods(Class domainTypeClaas, RepositoryRestConfiguration config, HttpMethod[] unsupportedActions) {
